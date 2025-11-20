@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import APIErrorType from '../types/apiErrorType';
 
-export function APIResponse(
+export function GlobalErrorUtil(
   resBody: APIErrorType,
   req: Request,
   res: Response,
@@ -12,3 +12,5 @@ export function APIResponse(
     data: resBody.data || null,
   });
 }
+
+export default GlobalErrorUtil;

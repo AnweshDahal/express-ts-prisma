@@ -3,7 +3,7 @@ import morgan from 'morgan'; // logger
 import { configDotenv } from 'dotenv';
 import cors from 'cors';
 import baseRouter from './routes';
-import { APIResponse } from './utils/globalErrorUtil';
+import GlobalErrorUtil from './utils/globalErrorUtil';
 configDotenv({ path: `${__dirname}/../.env` });
 
 const app = Express();
@@ -17,7 +17,7 @@ app.use(Express.urlencoded({ extended: true })); // enable this to handle form-d
 
 app.use('/', baseRouter);
 
-app.use(APIResponse);
+app.use(GlobalErrorUtil);
 
 app.listen(app.get('port'), () => {
   console.log(`Listening on port ${app.get('port')} in ${app.get('env')} mode`);
