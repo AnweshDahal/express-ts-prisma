@@ -1,19 +1,25 @@
 import { Request, Response, NextFunction } from 'express';
-import APIResponseType from '../../types/apiResponseType';
+import APIErrorType from '../../types/apiErrorType';
 import defaultService from '../../services/default';
 async function defaultController(
   req: Request,
   res: Response,
   next: NextFunction,
 ) {
-  const data: boolean = defaultService();
-  const responsePayload: APIResponseType = {
-    status: 200,
-    message: 'ExpressJS with Typescript and Prisma',
-    data,
-  };
+  try {
+    const data: boolean = defaultService();
 
-  next(responsePayload);
+    res.status(200).json({
+      message: 'ExpressJS with Typescript and Prisma',
+      data,
+    });
+  } catch (err: any) {
+    next({
+      status: err.status || 500,
+      message: err.message || 'Internal Server Error',
+      data: err.data,
+    } satisfies APIErrorType);
+  }
 }
 
 export default defaultController;

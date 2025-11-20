@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import defaultController from '../controllers/default';
-import { APIResponse } from '../utils/responseUtil';
+import { APIResponse } from '../utils/globalErrorUtil';
 
 const baseRouter = Router();
 

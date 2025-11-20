@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import APIResponseType from '../types/apiResponseType';
+import APIErrorType from '../types/apiErrorType';
 
 export function APIResponse(
-  resBody: APIResponseType,
+  resBody: APIErrorType,
   req: Request,
   res: Response,
   next: NextFunction,
